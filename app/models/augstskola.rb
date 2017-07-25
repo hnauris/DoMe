@@ -1,0 +1,3 @@
+class Augstskola < ApplicationRecord
+  
+end

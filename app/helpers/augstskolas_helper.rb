@@ -1,0 +1,2 @@
+module AugstskolasHelper
+end
