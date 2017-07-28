@@ -22,3 +22,14 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+#gems used for functionality
+devise
+acts_as_follower
+bootstrap
+jQuery
+
+
+#todo
+add acts_as_follower to groups and users
