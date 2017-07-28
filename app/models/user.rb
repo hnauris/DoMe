@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
   has_many :comments
   has_many :posts
-  belongs_to :group
+  belongs_to :group, optional: true
   acts_as_follower
 end
