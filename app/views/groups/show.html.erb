@@ -1,5 +1,8 @@
 
 <div align="center">
+    <% if current_user.email == @group.admin %>
+        <%= link_to "Manage", manage_groups_path(:group_id => @group.id) %>
+    <% end %>
     <% if current_user.following?(@group) %>
         <p>Following</p>
     <% else %>

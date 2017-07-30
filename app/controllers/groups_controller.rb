@@ -24,6 +24,18 @@ class GroupsController < ApplicationController
     @user = current_user
   end
 
+  def manage
+    @group = Group.find(params[:group_id])
+    @followers = @group.followers
+  end
+
+  def approve
+    @group = Group.find(params[:id])
+    @user = User.find(params[:follower_id])
+    @group.member_list << @user.email
+    redirect_to :manage
+  end
+
   def edit
   end
 
@@ -31,6 +43,8 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:group_id])
     @user = current_user
     @user.follow(@group)
+    #@group.member_list << @user.email
+    #@group.save
     redirect_to group_path(params[:group_id])
   end
 

@@ -7,8 +7,12 @@ Rails.application.routes.draw do
     collection do
       get :subscribe
       post :subscribe
+      get :manage
+      post 'approve' => 'group#approve', as: 'approve'
     end
   end
+
+  
 
   resources :augstskolas
   resources :pages
