@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @groups = Group.all
+    @groups = Group.paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -20,9 +20,18 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @group = Group.find(params[:id])
+    @user = current_user
   end
 
   def edit
+  end
+
+  def subscribe()
+    @group = Group.find(params[:group_id])
+    @user = current_user
+    @user.follow(@group)
+    redirect_to group_path(params[:group_id])
   end
 
   private

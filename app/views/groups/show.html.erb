@@ -1,2 +1,12 @@
-<h1>Group#show</h1>
-<p>Find me in app/views/group/show.html.erb</p>
+
+<div align="center">
+    <% if current_user.following?(@group) %>
+        <p>Following</p>
+    <% else %>
+        <h2><%= @group.name %></h1>
+        <small>Admin of the group: <%= @group.admin %></small>
+        <p>You are not a member of this group</p>
+        <%= link_to  "Subscribe", subscribe_groups_path(:group_id => @group.id) %>
+    <% end %>
+</div>
+
