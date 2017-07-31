@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   resources :posts
   devise_for :users
   resources :groups do
+    resources :followers
     collection do
       get :subscribe
       post :subscribe
       get :manage
-      post 'approve' => 'group#approve', as: 'approve'
+      get :approve
+      post 'approve' => 'group#approve'
     end
   end
 

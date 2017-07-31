@@ -31,9 +31,9 @@ class GroupsController < ApplicationController
 
   def approve
     @group = Group.find(params[:id])
-    @user = User.find(params[:follower_id])
+    @user = User.find(params[:user_id])
     @group.member_list << @user.email
-    redirect_to :manage
+    redirect_to :root
   end
 
   def edit
@@ -46,6 +46,13 @@ class GroupsController < ApplicationController
     #@group.member_list << @user.email
     #@group.save
     redirect_to group_path(params[:group_id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    @follower = @group.followers.find(params[:id])
+    @group.member_list << @follower.email
+    redirect_to group_followers_path(:group_id => @group.id)
   end
 
   private

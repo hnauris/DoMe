@@ -1,4 +1,3 @@
 <% @followers.each do |follower| %>
     <%= follower.email %>
-    <%= link_to "Approve", manage_groups_path(:follower_id => follower) %>
 <% end %>
