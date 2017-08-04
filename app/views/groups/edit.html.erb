@@ -1,2 +1,13 @@
-<h1>Group#edit</h1>
-<p>Find me in app/views/group/edit.html.erb</p>
+<h1>Group list</h1>
+<div class="center">
+  <% @followers.each do |follower| %>
+    <div class="well">
+      <p><%= link_to "Approve #{follower.email}", group_path(follower), method: :patch %></p>
+    </div>
+    <hr></hr>
+  <% end %>
+</div>
+
+<hr></hr>
+<%= link_to "Create a new group", new_group_path, class: 'btn btn-primary' %>
+<hr></hr>

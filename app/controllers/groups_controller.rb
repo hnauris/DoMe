@@ -36,9 +36,6 @@ class GroupsController < ApplicationController
     redirect_to :root
   end
 
-  def edit
-  end
-
   def subscribe()
     @group = Group.find(params[:group_id])
     @user = current_user
@@ -48,11 +45,19 @@ class GroupsController < ApplicationController
     redirect_to group_path(params[:group_id])
   end
 
+  def edit
+    @group = Group.find(params[:id])
+    @followers = @group.followers
+  end
+
   def update
     @group = Group.find(params[:id])
-    @follower = @group.followers.find(params[:id])
-    @group.member_list << @follower.email
-    redirect_to group_followers_path(:group_id => @group.id)
+    @user = User.find(params[:id])
+    @group.member_list << @user.email
+
+    if @group.save
+      redirect_to root_path
+    end
   end
 
   private
