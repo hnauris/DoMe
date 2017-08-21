@@ -8,9 +8,6 @@ Rails.application.routes.draw do
     collection do
       get :subscribe
       post :subscribe
-      get :manage
-      get :approve
-      post 'approve' => 'group#approve'
     end
   end
 

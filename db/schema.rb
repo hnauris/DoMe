@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170730164709) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "augstskolas", force: :cascade do |t|
     t.string "name"
     t.string "symbol"
@@ -28,9 +31,9 @@ ActiveRecord::Schema.define(version: 20170730164709) do
 
   create_table "follows", force: :cascade do |t|
     t.string "followable_type", null: false
-    t.integer "followable_id", null: false
+    t.bigint "followable_id", null: false
     t.string "follower_type", null: false
-    t.integer "follower_id", null: false
+    t.bigint "follower_id", null: false
     t.boolean "blocked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 20170730164709) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "augstskola_id"
-    t.string "member_list"
+    t.string "member_list", default: [], array: true
   end
 
   create_table "posts", force: :cascade do |t|

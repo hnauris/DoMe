@@ -22,26 +22,13 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @user = current_user
-  end
-
-  def manage
-    @group = Group.find(params[:group_id])
-    @followers = @group.followers
-  end
-
-  def approve
-    @group = Group.find(params[:id])
-    @user = User.find(params[:user_id])
-    @group.member_list << @user.email
-    redirect_to :root
+    @members = @group.member_list
   end
 
   def subscribe()
     @group = Group.find(params[:group_id])
     @user = current_user
     @user.follow(@group)
-    #@group.member_list << @user.email
-    #@group.save
     redirect_to group_path(params[:group_id])
   end
 
@@ -52,9 +39,8 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    @user = User.find(params[:id])
-    @group.member_list << @user.email
-
+    @follower = @group.followers.find(params[:id])
+    @group.member_list << params[:follower]
     if @group.save
       redirect_to root_path
     end
@@ -62,7 +48,7 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    params.require(:group).permit(:name, :admin, :augstskola_id, :user_id)
+    params.require(:group).permit(:name, :admin, :augstskola_id, :user_id, member_list: [])
   end
 
 end

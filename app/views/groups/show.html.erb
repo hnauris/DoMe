@@ -11,5 +11,9 @@
         <p>You are not a member of this group</p>
         <%= link_to  "Subscribe", subscribe_groups_path(:group_id => @group.id) %>
     <% end %>
+
+    <% @members.each do |x| %>
+        <%= x %>
+    <% end %>
 </div>
 
