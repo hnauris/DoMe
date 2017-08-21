@@ -1,5 +1,9 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
+  def my
+    @user = current_user
+    @groups = @user.all_following
+  end
   def index
     @groups = Group.paginate(page: params[:page], per_page: 5)
   end

@@ -4,13 +4,9 @@
     <% unless @group.member_list.include?(follower.email) %>
     <div class="well">
       <%= link_to "Approve #{follower.email}", group_path(@group, :follower => follower.email),  method: :patch %>
-      
     </div>
-    <%= hidden_field_tag "group", @group.member_list, {:id => "group"} %>
-    <%= hidden_field_tag "follower", follower.email, {:id => "follower"} %>
     <hr></hr>
     <% end %>
   <% end %>
 </div>
-
 <hr></hr>

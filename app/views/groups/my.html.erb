@@ -1,0 +1,18 @@
+<h1>Followed groups</h1>
+<div class="center">
+  <% @groups.each do |group| %>
+    <% if group.member_list.include?(current_user.email) %>
+    <div class="well">
+      <h3><%= link_to "#{group.name}", group_path(group), class: "btn btn-lg btn-success" %></h3>
+    </div>
+    <hr></hr>
+    <% else %>
+      <div class="well">
+      <h3><%= link_to "#{group.name}", group_path(group), class: "btn btn-lg btn-danger" %></h3>
+    </div>
+    <hr></hr>
+    <% end %>
+  <% end %>
+</div>
+
+<hr></hr>

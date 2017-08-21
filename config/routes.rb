@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     collection do
       get :subscribe
       post :subscribe
+      get :my
     end
   end
 
