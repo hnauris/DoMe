@@ -1,2 +1,22 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<h1>lalalala</h1>
+<h1><%= @group_id %></h1>
+
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+
+<%= form_for @post do |f| %>
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= f.label :description %>
+    </div>
+    <div class="col-sm-8">
+      <%= f.text_field :description, class: 'form-control', placeholder: '....', autofocus: true %>
+    </div>
+    <div class="col-sm-offset-2 col-sm-10">
+      </br>
+      <%= f.submit class: 'btn btn-primary btn-lg' %>
+    </div>
+  </div>
+
+<% end %>

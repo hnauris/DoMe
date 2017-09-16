@@ -15,5 +15,11 @@
     <% @members.each do |x| %>
         <%= x %>
     <% end %>
+
+    <hr></hr>
+
+    <%= month_calendar do |date| %>
+        <%= link_to date, post_path(:date => date, :group_idd => @group.id) %>
+    <% end %>
 </div>
 
