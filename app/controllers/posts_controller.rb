@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
   def index
+    @posts = Post.all
+    @date = params[:date]
+    @group = params[:group_idd]
   end
 
   def new
     @post = Post.new
-    @group = params[:group_idd]
+    
   end
 
   def create
@@ -29,9 +32,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.all
-    @date = params[:date]
-    @group = params[:group_idd]
+    
   end
 
   private

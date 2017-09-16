@@ -1,15 +1,1 @@
-<h1 align="center">Tasks for <%= @date %></h1>
-
-<% @posts.each do |post| %>
-    <% if post.date == @date && post.group_id.to_s == @group.to_s%>
-        <div class="well">
-            <%= post.description %>
-            <%= post.importance %>
-        </div>
-    <% end %>
-<% end %>
-
-
-
-</br>
-<%= link_to "Add post", new_post_path(:date => @date, :group_idd => @group), class: "btn btn-lg btn-default" %>
+<h1>posts#show</h1>
