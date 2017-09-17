@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
   resources :comments
-  resources :posts
+  
   devise_for :users
   resources :groups do
     resources :followers
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post :subscribe
       get :my
     end
+    resources :posts
   end
 
   

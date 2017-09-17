@@ -7,14 +7,10 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    
   end
 
   def create
     @post = Post.new(post_params)
-    @date = params[:date]
-    @group = params[:group_idd]
-
     @post.date = @date
     @post.user_id = current_user.id
     @post.group_id = @group.to_i
