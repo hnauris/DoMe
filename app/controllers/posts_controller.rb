@@ -10,10 +10,11 @@ class PostsController < ApplicationController
   end
 
   def create
+    @group = Group.find(params[:id])
     @post = Post.new(post_params)
     @post.date = @date
     @post.user_id = current_user.id
-    @post.group_id = @group.to_i
+    @post.group_id = @group
     @post.importance = 1
     if @post.save
       flash[:success] = 'Post has been created successfully!'
@@ -31,6 +32,8 @@ class PostsController < ApplicationController
     
   end
 
+  def update
+  end
   private
 
   def post_params

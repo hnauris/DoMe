@@ -1,11 +1,11 @@
 <h1>lalalala</h1>
-<h1><%= @group_id %></h1>
+
 
 <% flash.each do |key, value| %>
   <%= content_tag :div, value, class: "flash #{key}" %>
 <% end %>
 
-<%= form_for @post do |f| %>
+<%= form_for @post, url: new_group_post_path do |f| %>
   <div class="form-group">
     <div class="control-label col-sm-2">
       <%= f.label :description %>

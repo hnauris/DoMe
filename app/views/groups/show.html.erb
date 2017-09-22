@@ -19,7 +19,7 @@
     <hr></hr>
 
     <%= month_calendar do |date| %>
-        <%= link_to date, group_posts_path(:date => date) %>
+        <%= link_to date, group_posts_path(:group_id => @group.id, :date => date) %>
     <% end %>
 </div>
 
