@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @date = params[:date]
-    @group = params[:group_idd]
+    @group = Group.find(params[:group_id])
   end
 
   def new
@@ -11,9 +11,9 @@ class PostsController < ApplicationController
   end
 
   def create
+    @date = params[:date]
     @group = Group.find(params[:group_id])
     @post = Post.new(post_params)
-    @post.date = @date
     @post.user_id = current_user.id
     @post.group_id = @group.id
     @post.importance = 1

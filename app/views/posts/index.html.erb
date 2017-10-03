@@ -1,10 +1,9 @@
 <h1 align="center">Tasks for <%= @date %></h1>
 
-<% @posts.each do |post| %>
-    <% if post.date == @date && post.group_id.to_s == @group.to_s%>
+<% @posts.each do |x| %>
+    <% if x.date == params[:date] && x.group == @group %>
         <div class="well">
-            <%= post.description %>
-            <%= post.importance %>
+            <%= x.description %>
         </div>
     <% end %>
 <% end %>

@@ -11,6 +11,7 @@ ss
       <%= f.label :description %>
     </div>
     <div class="col-sm-8">
+      <%= f.hidden_field :date, :value => params[:date] %>
       <%= f.text_field :description, class: 'form-control', placeholder: '....', autofocus: true %>
     </div>
     <div class="col-sm-offset-2 col-sm-10">
