@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
     @date = params[:date]
     @group = Group.find(params[:group_id])
+    @posts = @group.posts
   end
 
   def new
@@ -17,6 +17,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     @post.group_id = @group.id
     @post.importance = 1
+    @group.posts << @post
     if @post.save
       flash[:success] = 'Post has been created successfully!'
       redirect_to group_path(@group)
@@ -38,6 +39,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:date, :description, :importance, :user_id, :group_id)
+    params.require(:post).permit(:date, :title, :description, :importance, :user_id, :group_id)
   end
 end
