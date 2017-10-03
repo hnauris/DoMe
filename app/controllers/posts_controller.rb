@@ -7,18 +7,19 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @date = params[:date]
   end
 
   def create
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
     @post = Post.new(post_params)
     @post.date = @date
     @post.user_id = current_user.id
-    @post.group_id = @group
+    @post.group_id = @group.id
     @post.importance = 1
     if @post.save
       flash[:success] = 'Post has been created successfully!'
-      redirect_to group_path
+      redirect_to group_path(@group)
     else
       flash[:danger] = @post.errors.full_messages
       render 'new'
