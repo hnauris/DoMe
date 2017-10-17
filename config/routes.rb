@@ -10,7 +10,9 @@ Rails.application.routes.draw do
       post :subscribe
       get :my
     end
-    resources :posts
+    resources :posts do
+      resources :comments
+    end
   end
   
 
