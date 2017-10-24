@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :verify_is_group_member
   def index
     @date = params[:date]
     @group = Group.find(params[:group_id])
@@ -41,5 +42,11 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:date, :title, :description, :importance, :user_id, :group_id)
+  end
+  def verify_is_group_member
+    @group = Group.find(params[:group_id])
+    if @group.member_list.include?(current_user.email)
+      return
+    end
   end
 end

@@ -19,7 +19,13 @@
     <hr></hr>
 
     <%= month_calendar do |date| %>
-        <%= link_to date, group_posts_path(:group_id => @group.id, :date => date) %>
+        <% @post = Post.where(:date => date) %>
+        <% @post_count = @post.count %>
+        <% if @post_count > 0 %>
+            <%= link_to "#{date} (#{@post_count})", group_posts_path(:group_id => @group.id, :date => date), style: 'color:red' %>
+        <% else %>
+        <%= link_to "#{date} (#{@post_count})", group_posts_path(:group_id => @group.id, :date => date)%>
+        <% end %>
     <% end %>
 </div>
 

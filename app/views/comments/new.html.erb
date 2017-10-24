@@ -1,19 +1,18 @@
-<% flash.each do |danger, msg| %>
-    <%= content_tag :div, msg, class: "alert alert-info" %>
-<% end %>
 <div class="well">
-    <h2 style="color:red"><%= @post.title %></h2>
+    <h2 style="font-weight:bold"><%= @post.title %></h2>
     <p><%= @post.description %></p>
 </div>
 </hr>
 
-<div class="wel">
+<div class="well">
     <% @comments.each do |x| %>
+        <small style="color:blue"><%= current_user.email %></small><br></br>
         <p><%= x.text %></p>
         <small><%= x.created_at %></small>
+        <hr></hr>
     <% end %>
 </div>
-</hr>
+<hr></hr>
 <%= form_for @comment, ur: url_for(:controller => :comments, :action => "create") do |f|%>
 <div class="form-group">
     <div class="col-sm-8">

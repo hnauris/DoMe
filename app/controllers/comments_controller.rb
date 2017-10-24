@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :verify_is_group_member
   def index
     
   end
@@ -21,10 +23,10 @@ class CommentsController < ApplicationController
     @user = current_user
     @user.comments << @comment
     @group = Group.find(params[:group_id])
-    @group.posts << @post
+    @post.comments << @comment
     if @comment.save
       flash[:success] = "Comment added successfully!"
-      redirect_to root_path
+      redirect_to new_group_post_comment_path(@group.id, @post.id)
     else
       flash[:danger] = @comment.errors.full_messages
       redirect_to new_group_post_comment_path(@group.id, @post.id)
@@ -37,6 +39,12 @@ class CommentsController < ApplicationController
   private
   def comment_params
     params.require(:comment).permit(:text, :post_id, :user_id)
+  end
+  def verify_is_group_member
+    @group = Group.find(params[:group_id])
+    if @group.member_list.include?(current_user.email)
+      return
+    end
   end
   
 end
