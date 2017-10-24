@@ -1,2 +1,28 @@
-<h1>Comments#new</h1>
-<p>Find me in app/views/comments/new.html.erb</p>
+<% flash.each do |danger, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-info" %>
+<% end %>
+<div class="well">
+    <h2 style="color:red"><%= @post.title %></h2>
+    <p><%= @post.description %></p>
+</div>
+</hr>
+
+<div class="wel">
+    <% @comments.each do |x| %>
+        <p><%= x.text %></p>
+        <small><%= x.created_at %></small>
+    <% end %>
+</div>
+</hr>
+<%= form_for @comment, ur: url_for(:controller => :comments, :action => "create") do |f|%>
+<div class="form-group">
+    <div class="col-sm-8">
+      <%= f.text_area :text, size:"60x7" %>
+    </div>
+    <div class="col-sm-10">
+      </br>
+      <%= hidden_field_tag "group_id", @group.id %>
+      <%= f.button :submit, name: "post_id", value: @post.id, class: 'btn btn-primary btn-lg' %>
+    </div>
+</div>
+<% end %>

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @date = params[:date]
     @group = Group.find(params[:group_id])
