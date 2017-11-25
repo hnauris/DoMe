@@ -91,4 +91,16 @@ Rails.application.configure do
 
   #email confirmation mailer
   config.action_mailer.default_url_options = {:host => 'https://dome12.herokuapp.com/'}
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.perform_deliveries = true
+  ActionMailer::Base.raise_delivery_errors = true
+  ActionMailer::Base.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'dome12.herokuapp.com',
+    user_name:            ENV["GMAIL_USERNAME"],
+    password:             ENV["GMAIL_PASSWORD"],
+    authentication:       'plain',
+    enable_starttls_auto: true 
+  }
 end
