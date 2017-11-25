@@ -5,7 +5,11 @@
         <div class="well">
             <h3><%= x.title %></h3>  
             <p><%= x.description %></p>
-            <small><%= link_to "Comments", new_group_post_comment_path(@group, x.id) %></small> 
+            <small><%= link_to "Comments", new_group_post_comment_path(@group, x.id) %></small>
+            <% if current_user.id == x.user_id %>
+                <small><%= link_to "Edit", edit_group_post_path(x.group_id, x.id, :date => @date) %></small>
+                <small class="col-sm-offset-11"><%= link_to "Delete", {:action => 'destroy', :id => x.id}, data: {confirm: "Are you sure you want to delete this post?"}, method: :delete %></small>
+            <% end %>
         </div>
     <% end %>
 <% end %>

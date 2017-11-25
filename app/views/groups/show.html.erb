@@ -3,29 +3,36 @@
     <% if current_user.email == @group.admin %>
         <%= link_to "Manage", edit_group_path %>
     <% end %>
-    <% if current_user.following?(@group) %>
+    <% if current_user.following?(@group) && @members.include?(current_user.email) %>
         <p>Following</p>
+        
+        <%= month_calendar do |date| %>
+            <% @post = Post.where(:date => date) %>
+            <% @post_count = @post.count %>
+            <% if @post_count > 0 %>
+                <%= link_to "#{date} (#{@post_count})", group_posts_path(:group_id => @group.id, :date => date), style: 'color:red' %>
+            <% else %>
+            <%= link_to "#{date} (#{@post_count})", group_posts_path(:group_id => @group.id, :date => date)%>
+            <% end %>
+        <% end %>
+    <% elsif current_user.following?(@group) && !@members.include?(current_user.email) %>
+        <h2><%= @group.name %></h1>
+        <small>Admin of the group: <%= @group.admin %></small>
+        <p>Admin of this group is processing your application</p>
     <% else %>
         <h2><%= @group.name %></h1>
         <small>Admin of the group: <%= @group.admin %></small>
         <p>You are not a member of this group</p>
         <%= link_to  "Subscribe", subscribe_groups_path(:group_id => @group.id) %>
     <% end %>
-
+    
+    <small>Members: </small>
     <% @members.each do |x| %>
-        <%= x %>
+        <small><%= x %> </small>
     <% end %>
 
     <hr></hr>
 
-    <%= month_calendar do |date| %>
-        <% @post = Post.where(:date => date) %>
-        <% @post_count = @post.count %>
-        <% if @post_count > 0 %>
-            <%= link_to "#{date} (#{@post_count})", group_posts_path(:group_id => @group.id, :date => date), style: 'color:red' %>
-        <% else %>
-        <%= link_to "#{date} (#{@post_count})", group_posts_path(:group_id => @group.id, :date => date)%>
-        <% end %>
-    <% end %>
+
 </div>
 
