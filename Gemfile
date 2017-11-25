@@ -16,6 +16,7 @@ gem 'devise'
 gem 'will_paginate'
 gem 'simple_form'
 gem 'simple_calendar', '~> 2.0'
+gem 'figaro'
 
 gem 'pg'
 
