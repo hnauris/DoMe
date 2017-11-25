@@ -1,1 +1,5 @@
-<h2>Create an account to access the contents of this page!</h2>
+<% if user_signed_in? %>
+    <h3>Welcome, <%= current_user.email %></h3>
+<% else %>
+    <h2>Create an account or log in to access the contents of this page!</h2>
+<% end %>
