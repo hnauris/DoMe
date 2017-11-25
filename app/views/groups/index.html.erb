@@ -1,15 +1,19 @@
-<h1>Group list</h1>
-<div class="center">
-  <%= will_paginate%>
-  <% @groups.each do |group| %>
-    <div class="well">
-      <h3><%= link_to "#{group.name}", group_path(group) %></h3>
-    </div>
-    <hr></hr>
-  <% end %>
-  <%= will_paginate%>
+
+<div class="row">
+  <div class="col-md-offset-4 col-md-4 well">
+    <h3>Group list</h1>
+    <hr>
+    <%= will_paginate%>
+    <% @groups.each do |group| %>
+      <div class="">
+        <h5><%= link_to "#{group.name}", group_path(group), class: 'btn btn-default' %></h5>
+      </div>
+    <% end %>
+    <%= will_paginate%>
+    <hr>
+    <%= link_to "Create a new group", new_group_path, class: 'btn btn-success' %>
+  </div>
+  
 </div>
 
-<hr></hr>
-<%= link_to "Create a new group", new_group_path, class: 'btn btn-primary' %>
-<hr></hr>
+
